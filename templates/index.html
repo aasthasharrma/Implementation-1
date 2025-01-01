@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>REIT Performance Predictor</title>
+</head>
+<body>
+    <h1>REIT Performance Predictor</h1>
+    <form action="/predict" method="post">
+        <label>Feature 1 (% Inside Directors):</label><br>
+        <input type="number" step="0.01" name="feature1"><br>
+        <label>Feature 2 (REIT Size):</label><br>
+        <input type="number" step="0.01" name="feature2"><br>
+        <label>Feature 3 (Lifecycle Stage):</label><br>
+        <input type="number" step="0.01" name="feature3"><br>
+        <label>Feature 4 (S&P 500 Status, 0/1):</label><br>
+        <input type="number" step="0.01" name="feature4"><br><br>
+        <input type="submit" value="Predict">
+    </form>
+    {% if prediction %}
+    <h2>Predicted ROA/ROE: {{ prediction }}</h2>
+    {% endif %}
+</body>
+</html>
