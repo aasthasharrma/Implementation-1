@@ -6,6 +6,10 @@ from sklearn.preprocessing import StandardScaler
 import numpy as np
 
 # Define the model
+import torch
+import torch.nn as nn
+
+# Define the REITModel
 class REITModel(nn.Module):
     def __init__(self, input_dim):
         super(REITModel, self).__init__()
@@ -18,6 +22,14 @@ class REITModel(nn.Module):
         x = torch.relu(self.fc2(x))
         x = self.fc3(x)
         return x
+
+# Load the trained model
+model = REITModel(input_dim=4)
+model.load_state_dict(torch.load("reit_model.pth"))
+model.eval()
+
+print("Model loaded successfully!")
+
 
 # Create synthetic dataset
 def create_dataset():
@@ -73,9 +85,7 @@ def train_model(model, train_loader, epochs):
 # Train the model
 train_model(model, train_loader, epochs=3)
 
-# After training the model
-torch.save(model.state_dict(), "reit_model.pth")
-print("Model saved as 'reit_model.pth'")
+
 
 
 # Evaluate the model
